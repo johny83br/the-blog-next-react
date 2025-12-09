@@ -1,14 +1,14 @@
-import { postRepository } from '@/repositories/post';
 import { PostCoverImage } from '../PostCoverImage';
 import { PostInfo } from '../PostInfo';
 import { formatDateTime, formatDistanceToNow } from '@/utils/format-datetime';
+import { findAllPublicPosts } from '@/lib/post/queries';
 
 export async function PostsList() {
-  const posts = await postRepository.findAll();
+  const posts = await findAllPublicPosts();
 
   return (
     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
-      {posts.map(post => {
+      {posts.slice(1).map(post => {
         const link = `/post/${post.slug}`;
 
         return (

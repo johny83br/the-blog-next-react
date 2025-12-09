@@ -1,9 +1,13 @@
 import { PostCoverImage } from '../PostCoverImage';
 import { PostInfo } from '../PostInfo';
+import { formatDateTime, formatDistanceToNow } from '@/utils/format-datetime';
+import { findAllPublicPosts } from '@/lib/post/queries';
 
-export function PostFeatured() {
-  const slug = 'alguma-coisa';
-  const link = `/post/${slug}`;
+export async function PostFeatured() {
+  const posts = await findAllPublicPosts();
+  const post = posts[0];
+
+  const link = `/post/${post.slug}`;
 
   return (
     <section className='grid grid-cols-1 gap-8 mb-8 sm:grid-cols-2 group'>
@@ -11,23 +15,20 @@ export function PostFeatured() {
         linkProps={{ href: link }}
         imageProps={{
           width: 1200,
-          height: 768,
-          src: '/images/bryen_0.png',
-          alt: 'Post da notícia',
+          height: 720,
+          src: post.coverImageUrl,
+          alt: post.title,
           priority: true,
         }}
       />
       <PostInfo
-        dateTime='2025-08-30'
-        time='30/08/2025 10:00'
+        dateTime={formatDistanceToNow(post.createdAt)}
+        time={formatDateTime(post.createdAt)}
         url={link}
-        title='Lorem ipsum, dolor sit amet consectetur adipisicing elit'
+        title={post.title}
         as='h1'
       >
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero
-        consequatur assumenda quisquam quas minima natus nulla, laborum
-        perferendis enim sunt commodi fuga, nemo minus animi doloribus
-        voluptates, molestias sequi cum!
+        {post.excerpt}
       </PostInfo>
     </section>
   );
