@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: "The Blog - Este é um blog com Next.js",
-  description: "Essa seria a descrição da página.",
+  title: 'The Blog - Este é um blog com Next.js',
+  description: 'Essa seria a descrição da página.',
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{children: React.ReactNode}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-BR">
+    <html lang='pt-BR' className='dark'>
       <body>{children}</body>
     </html>
   );
