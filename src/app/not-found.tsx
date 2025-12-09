@@ -11,11 +11,8 @@ export default function NotFoundPage() {
       )}
     >
       <div>
-        <h1 className='text-7xl/tight mb-4 font-extrabold'>404</h1>
-        <p>
-          Erro 404 - A página que você está tentando acessar não existe neste
-          site.
-        </p>
+        <h1 className='text-7xl/tight mb-4 font-extrabold'>Erro 404</h1>
+        <p>A página que você está tentando acessar não existe neste site.</p>
       </div>
     </div>
   );
