@@ -1,10 +1,10 @@
 import { PostCoverImage } from '../PostCoverImage';
 import { PostInfo } from '../PostInfo';
 import { formatDateTime, formatDistanceToNow } from '@/utils/format-datetime';
-import { findAllPublicPosts } from '@/lib/post/queries';
+import { findAllPublicPostsCached } from '@/lib/post/queries';
 
 export async function PostFeatured() {
-  const posts = await findAllPublicPosts();
+  const posts = await findAllPublicPostsCached();
   const post = posts[0];
 
   const link = `/post/${post.slug}`;
