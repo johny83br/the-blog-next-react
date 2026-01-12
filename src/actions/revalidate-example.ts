@@ -11,5 +11,5 @@ export async function revalidateExampleAction(formdata: FormData) {
 
   // revalidatePath(`${path}`);
   //revalidateTag('randomuser', 'max');
-  revalidateTag('formatHourCached', 'stale');
+  revalidateTag('formatHourCached', 'seconds');
 }
