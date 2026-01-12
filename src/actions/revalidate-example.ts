@@ -11,5 +11,6 @@ export async function revalidateExampleAction(formdata: FormData) {
 
   // revalidatePath(`${path}`);
   //revalidateTag('randomuser', 'max');
-  revalidateTag('formatHourCached', 'seconds');
+  revalidateTag('posts', 'seconds'); // home
+  revalidateTag('post-rotina-matinal-de-pessoas-altamente-eficazes', 'seconds'); // single post pages
 }
