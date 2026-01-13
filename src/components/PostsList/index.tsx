@@ -1,9 +1,12 @@
+import ErrorMessage from '../ErrorMessage';
 import { PostCoverImage } from '../PostCoverImage';
 import { PostInfo } from '../PostInfo';
 import { findAllPublicPostsCached } from '@/lib/post/queries/public';
 
 export async function PostsList() {
   const posts = await findAllPublicPostsCached();
+
+  if (posts.length <= 1) return null;
 
   return (
     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8'>

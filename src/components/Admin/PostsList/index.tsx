@@ -3,9 +3,18 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { ButtonDeleteAdmin } from '../ButtonDelete';
 import { Dialog } from '@/components/Dialog';
+import ErrorMessage from '@/components/ErrorMessage';
 
 export default async function PostsListAdmin() {
   const posts = await findAllPostAdmin();
+
+  if (posts.length <= 0)
+    return (
+      <ErrorMessage
+        contentTitle='Ei! 😅'
+        content='Bora criar algum post novo?'
+      />
+    );
 
   return (
     <div className='mb-16'>

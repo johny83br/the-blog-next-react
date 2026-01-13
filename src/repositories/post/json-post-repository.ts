@@ -55,4 +55,11 @@ export class JsonPostRepository implements PostRepository {
 
     return post;
   }
+
+  async deleteById(id: string): Promise<void> {
+    const posts = await this.findAllPublic();
+    const post = posts.find(post => post.id === id);
+
+    if (!post) throw new Error('Post não encontrado para o ID: ' + id);
+  }
 }

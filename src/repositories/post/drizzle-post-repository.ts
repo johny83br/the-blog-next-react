@@ -5,6 +5,8 @@ import { logColor } from '@/utils/log-color';
 import { formatHour } from '@/utils/format-datetime';
 import { asyncDelay } from '@/utils/async-delay';
 import { SIMULATE_WAIT_IN_MS } from '@/lib/constants';
+import { postsTable } from '@/db/drizzle/schemas';
+import { eq } from 'drizzle-orm';
 
 export class DrizzlePostRepository implements PostRepository {
   async findAllPublic(): Promise<PostModel[]> {
@@ -58,5 +60,11 @@ export class DrizzlePostRepository implements PostRepository {
     if (!post) throw new Error('Post não encontrado para o ID: ' + id);
 
     return post;
+  }
+  async deleteById(id: string): Promise<void> {
+    await asyncDelay(SIMULATE_WAIT_IN_MS, true);
+    logColor(formatHour(Date.now()), 'deleteById: Deletando post por ID');
+
+    await drizzleDb.delete(postsTable).where(eq(postsTable.id, id));
   }
 }

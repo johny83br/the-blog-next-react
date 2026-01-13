@@ -2,7 +2,6 @@
 
 import { DeletePostAction } from '@/actions/post/delete-post-action';
 import { Dialog } from '@/components/Dialog';
-import { logColor } from '@/utils/log-color';
 import clsx from 'clsx';
 import { Trash2Icon } from 'lucide-react';
 import { useState, useTransition } from 'react';
@@ -23,9 +22,12 @@ export function ButtonDeleteAdmin({ id, title }: DeleteButtonProps) {
   async function handleConfirm() {
     startTransition(async () => {
       setShowDialog(false);
-      const result = await DeletePostAction(id);
-      alert(`Post com ID ${result} deletado com sucesso.`);
-      setShowDialog(false);
+      try {
+        await DeletePostAction(id);
+      } catch (error) {
+        console.error(error instanceof Error ? error.message : String(error));
+        return;
+      }
     });
   }
 
