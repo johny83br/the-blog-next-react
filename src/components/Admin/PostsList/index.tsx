@@ -1,8 +1,8 @@
-import { DeletePostAction } from '@/actions/post/delete-post-action';
 import { findAllPostAdmin } from '@/lib/post/queries/admin';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { ButtonDeleteAdmin } from '../ButtonDelete';
+import { Dialog } from '@/components/Dialog';
 
 export default async function PostsListAdmin() {
   const posts = await findAllPostAdmin();
