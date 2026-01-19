@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Container } from '@/components/Container';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
-import { ToastifyContainer } from '@/components/ToastifyContainer';
+import { Container } from '@/components/Layouts/Container';
+import { Header } from '@/components/Layouts/Header';
+import { Footer } from '@/components/Layouts/Footer';
+import { ToastifyContainer } from '@/components/Others/ToastifyContainer';
 
 export const metadata: Metadata = {
   title: {

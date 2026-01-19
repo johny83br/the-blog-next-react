@@ -1,4 +1,4 @@
-import ErrorMessage from '../ErrorMessage';
+import ErrorMessage from '../../Others/ErrorMessage';
 import { PostCoverImage } from '../PostCoverImage';
 import { PostInfo } from '../PostInfo';
 import { findAllPublicPostsCached } from '@/lib/post/queries/public';

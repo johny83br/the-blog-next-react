@@ -1,4 +1,4 @@
-import ErrorMessage from '@/components/ErrorMessage';
+import ErrorMessage from '@/components/Others/ErrorMessage';
 
 export default function NotFoundPage() {
   return (

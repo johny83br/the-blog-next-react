@@ -1,6 +1,6 @@
-import { PostFeatured } from '@/components/PostFeatured';
-import { PostsList } from '@/components/PostsList';
-import { SpinLoader } from '@/components/SpinLoader';
+import { PostFeatured } from '@/components/Posts/PostFeatured';
+import { PostsList } from '@/components/Posts/PostsList';
+import { SpinLoader } from '@/components/Others/SpinLoader';
 import { Suspense } from 'react';
 
 export const dynamic = 'force-static';
