@@ -18,6 +18,7 @@ export function MenuAdmin() {
   const pathName = usePathname();
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsOpen(false);
   }, [pathName, setIsOpen]);
 
@@ -76,7 +77,7 @@ export function MenuAdmin() {
 
       <Link className={linkClasses} href='/admin/posts/new'>
         <CirclePlus />
-        Novo Post
+        Criar Post
       </Link>
     </nav>
   );

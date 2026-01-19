@@ -1,4 +1,12 @@
+import { ManagePostForm } from '@/components/Admin/ManagePostForm';
+import { Subtitle } from '@/components/Layouts/Subtitle';
+import { Metadata } from 'next';
+
 export const dynamic = 'force-dynamic';
+
+export const metadata: Metadata = {
+  title: 'Editar Post | Admin',
+};
 
 type AdminPostPageProps = {
   params: Promise<{
@@ -9,5 +17,10 @@ type AdminPostPageProps = {
 export default async function AdminPostIdPage({ params }: AdminPostPageProps) {
   const { id } = await params;
 
-  return <div className='py-16 text-6xl'>Admin Post Id Page: {id}</div>;
+  return (
+    <>
+      <Subtitle>Editar Post</Subtitle>
+      <ManagePostForm />
+    </>
+  );
 }

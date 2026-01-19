@@ -15,9 +15,47 @@ export function ManagePostForm() {
   return (
     <form method='' className='mb-16'>
       <div className='flex flex-col gap-6'>
-        <InputText labelText='Título' placeholder='Digite o título do post' />
+        <InputText
+          labelText='ID'
+          name='id'
+          placeholder='ID gerado automaticamente'
+          type='text'
+          defaultValue={''}
+          readOnly
+        />
 
-        <ImageUploader />
+        <InputText
+          labelText='Slug'
+          name='slug'
+          placeholder='Slug gerada automaticamente'
+          type='text'
+          defaultValue={''}
+          readOnly
+        />
+
+        <InputText
+          labelText='Autor'
+          name='author'
+          placeholder='Digite o nome do autor'
+          type='text'
+          defaultValue={''}
+        />
+
+        <InputText
+          labelText='Título'
+          name='title'
+          placeholder='Digite o título'
+          type='text'
+          defaultValue={''}
+        />
+
+        <InputText
+          labelText='Resumo'
+          name='excerpt'
+          placeholder='Digite o resumo'
+          type='text'
+          defaultValue={''}
+        />
 
         <MarkdownEditor
           labelText='Conteúdo'
@@ -27,7 +65,17 @@ export function ManagePostForm() {
           setValue={setContent}
         />
 
-        <InputCheckbox labelText='Aceito os termos e condições' />
+        <ImageUploader />
+
+        <InputText
+          labelText='URL da imagem de capa'
+          name='coverImageUrl'
+          placeholder='Digite a url da imagem'
+          type='text'
+          defaultValue={''}
+        />
+
+        <InputCheckbox labelText='Publicar?' name='published' type='checkbox' />
 
         <div className='mt-8'>
           <Button type='submit'>Enviar</Button>
