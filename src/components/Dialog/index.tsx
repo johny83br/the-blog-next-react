@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Button } from '../Button';
+import { Button } from '../Forms/Button';
 
 type DialogProps = {
   isVisible?: boolean;
