@@ -2,7 +2,6 @@ import { findAllPostAdmin } from '@/lib/post/queries/admin';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { ButtonDeleteAdmin } from '../ButtonDelete';
-import { Dialog } from '@/components/Dialog';
 import ErrorMessage from '@/components/Others/ErrorMessage';
 
 export default async function PostsListAdmin() {
