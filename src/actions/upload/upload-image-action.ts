@@ -5,36 +5,42 @@ import {
   IMAGE_UPLOAD_DIRECTORY,
   IMAGE_UPLOAD_MAX_SIZE,
 } from '@/lib/constants';
+import { verifyLoginSession } from '@/lib/login/manage-login';
 import { mkdir, writeFile } from 'fs/promises';
 import { extname, resolve } from 'path';
 
 type UploadImageActionResult = {
   url: string;
+  error: string;
 };
 
 export async function UploadImageAction(
   formData: FormData,
 ): Promise<UploadImageActionResult> {
-  // TODO: Verificar se o usuário está logado
+  const isAuthenticated = await verifyLoginSession();
 
-  const makeResult = ({ url = '' }) => ({ url });
+  const makeResult = ({ url = '', error = '' }) => ({ url, error });
+
+  if (!isAuthenticated) {
+    return makeResult({ error: 'Faça login novamente em outra aba.' });
+  }
 
   if (!(formData instanceof FormData)) {
-    throw new Error('Dados inválidos');
+    return makeResult({ error: 'Dados inválidos' });
   }
 
   const file = formData.get('file');
 
   if (!(file instanceof File)) {
-    throw new Error('Arquivo inválido');
+    return makeResult({ error: 'Arquivo inválido' });
   }
 
   if (file.size > IMAGE_UPLOAD_MAX_SIZE) {
-    throw new Error('Arquivo muito grande');
+    return makeResult({ error: 'Arquivo muito grande' });
   }
 
   if (!file.type.startsWith('image/')) {
-    throw new Error('Imagem inválida');
+    return makeResult({ error: 'Imagem inválida' });
   }
 
   const imageExtension = extname(file.name);
@@ -54,5 +60,8 @@ export async function UploadImageAction(
 
   await writeFile(fileFullPath, buffer);
 
-  return makeResult({ url: `${IMAGE_SERVER_URL}/${uniqueImageName}` });
+  return makeResult({
+    url: `${IMAGE_SERVER_URL}/${uniqueImageName}`,
+    error: '',
+  });
 }

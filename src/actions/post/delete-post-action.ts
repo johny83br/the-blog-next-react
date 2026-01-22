@@ -1,14 +1,21 @@
 'use server';
 
+import { verifyLoginSession } from '@/lib/login/manage-login';
 import { postRepository } from '@/repositories/post';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
 export async function DeletePostAction(id: string) {
+  const isAuthenticated = await verifyLoginSession();
+
+  if (!isAuthenticated) {
+    return {
+      error: 'Faça login em outra aba antes de apagar.',
+    };
+  }
+
   if (!id || typeof id !== 'string') {
     throw new Error('ID do post inválido.');
   }
-
-  //TODO: Checar login do usuário
 
   let post;
 

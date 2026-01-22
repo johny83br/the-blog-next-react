@@ -1,6 +1,6 @@
 'use client';
 
-import { loginAction } from '@/actions/login/login-action';
+import { LoginAction } from '@/actions/login/login-action';
 import { Button } from '@/components/Forms/Button';
 import { InputText } from '@/components/Forms/InputText';
 import clsx from 'clsx';
@@ -13,7 +13,7 @@ export function LoginForm() {
     username: '',
     error: '',
   };
-  const [state, action, isPending] = useActionState(loginAction, initialState);
+  const [state, action, isPending] = useActionState(LoginAction, initialState);
 
   useEffect(() => {
     if (state.error) {

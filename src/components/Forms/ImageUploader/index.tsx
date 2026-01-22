@@ -47,17 +47,16 @@ export function ImageUploader({ disabled = false }: ImageProps) {
     formData.append('file', file);
 
     startTransition(async () => {
-      try {
-        const result = await UploadImageAction(formData);
+      const result = await UploadImageAction(formData);
 
-        setImgUrl(result.url);
-
-        toast.success('Imagem enviada');
-      } catch (error) {
-        toast.error(error instanceof Error ? error.message : String(error));
+      if (result.error) {
+        toast.error(result.error);
         setImgUrl('');
         return;
       }
+
+      setImgUrl(result.url);
+      toast.success('Imagem enviada');
     });
 
     fileInput.value = '';
