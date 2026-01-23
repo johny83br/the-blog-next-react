@@ -31,4 +31,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             # Commands to execute on the remote VM
-            echo "Deployment complete"
+            ./refresh-theblog.sh
